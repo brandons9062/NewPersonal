@@ -1,0 +1,57 @@
+.navbarLogo {
+    height: 65px;
+    width: 80px;
+}
+
+.navbarProfileIcon {
+    height: 35px;
+    width: 40px;
+}
+
+/*
+.navbarText {
+    color: white;
+}*/
+
+@keyframes pulse_animation {
+  25% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+}
+
+.pulse:hover {
+	animation-name: pulse_animation;
+	animation-duration: 1000ms;
+	transform-origin: 70% 70%;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+#profileIconDiv {
+    background-image: url('../src/imgs/djIconGray.png');
+    background-size: cover;
+    background-position: center;
+    height: 35px;
+    width: 40px;
+}
+
+#profileIconDiv:hover {
+    background-image: url('../src/imgs/djIconWhite.png');
+}
+
+#gearIconDiv {
+    background-image: url('../src/imgs/settingsGearGray.png');
+    background-size: cover;
+    background-position: center;
+    height: 35px;
+    width: 40px;
+}
+
+#gearIconDiv:hover {
+    background-image: url('../src/imgs/settingsGearWhite.png');
+    transform: rotate(360deg);
+    transition: all 0.3s ease-in-out 0s;
+}
