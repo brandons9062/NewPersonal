@@ -1,3 +1,8 @@
+#myNav {
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+
 .navbarLogo {
     height: 65px;
     width: 80px;
@@ -30,6 +35,15 @@
 	animation-timing-function: linear;
 }
 
+.grow {
+    transition:all 0.5s ease-out;
+}
+
+.grow:hover {
+    transform:scale(1.3);
+    text-decoration: none;
+}
+
 #profileIconDiv {
     background-image: url('../src/imgs/djIconGray.png');
     background-size: cover;
@@ -55,3 +69,57 @@
     transform: rotate(360deg);
     transition: all 0.3s ease-in-out 0s;
 }
+
+.homeColumn {
+    background-color: #333333;
+    color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.homeColumn a {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#homeColumnRow {
+    height: calc(100vh - 71.5px);
+}
+
+
+.homeColumnImage {
+    background-size: cover;
+    background-position: center;
+    height: 130px;
+    width: 130px;
+}
+
+.homeColumnText {
+    color: white;
+}
+
+#homeSearchIcon {
+    background-image: url("../src/imgs/searchIconWhite.png");
+}
+
+#homeCollaborationIcon {
+    background-image: url("../src/imgs/collaborationIcon.png");
+}
+
+#homeUploadTrackIcon {
+    background-image: url("../src/imgs/uploadTrackIcon.png")
+}
+
+
+
+
+
+
+
+
+
+
