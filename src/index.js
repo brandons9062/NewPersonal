@@ -9,6 +9,7 @@ import $ from 'jQuery';
 import reducers from './reducers';
 import MainNav from './components/mainNav';
 import Home from './components/homeContainer';
+import AllGenres from './components/allGenres';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -25,6 +26,7 @@ ReactDOM.render(
                 <MainNav />
                 <Switch>
                     <Route path='/test' component={Test} />
+                    <Route path='/genres' component={AllGenres} />
                     <Route path='/' component={Home} />
                 </Switch>
             </div> 
