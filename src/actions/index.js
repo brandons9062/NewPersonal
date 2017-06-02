@@ -3,11 +3,14 @@ import axios from 'axios';
 export const GET_TRACKS = 'get_tracks';
 export const GET_GENRES = 'get_genres';
 export const GET_USERS = 'get_users';
+export const AUTH_LOGIN = 'auth_login';
+export const AUTH_USER = 'auth_user';
+export const AUTH_LOGOUT = 'auth_logout';
 
-const ROOT_URL = "localhost:3000/api";
+const ROOT_URL = "http://localhost:3000/";
 
 export function getTracks() {
-    const request = axios.get(`${ROOT_URL}/tracks`);
+    const request = axios.get(`${ROOT_URL}api/tracks`);
     
     return {
         type: GET_TRACKS,
@@ -16,7 +19,7 @@ export function getTracks() {
 }
 
 export function getGenres() {
-    const request = axios.get(`${ROOT_URL}/genres`);
+    const request = axios.get(`${ROOT_URL}api/genres`);
     
     return {
         type: GET_GENRES,
@@ -25,10 +28,44 @@ export function getGenres() {
 }
 
 export function getUsers() {
-    const request = axios.get(`${ROOT_URL}/users`);
+    const request = axios.get(`${ROOT_URL}api/users`);
     
     return {
         type: GET_USERS,
         payload: request
     }
 }
+
+export function authLogin() {
+    const request = axios.post(`${ROOT_URL}/authlocal`)
+        .catch(err => console.log('ERROR LOGGING IN!', err));
+    
+    return {
+        type: AUTH_LOGIN,
+        payload: request
+    }
+}
+
+export function authUser() {
+    const request = axios.get(`${ROOT_URL}auth/me`);
+    
+    return {
+        type: AUTH_USER,
+        payload: request
+    }
+}
+
+export function authLogout() {
+    const request = axios.get(`${ROOT_URL}auth/logout`);
+    
+    return {
+        type: AUTH_LOGOUT,
+        payload: request
+    }
+}
+
+
+
+
+
+

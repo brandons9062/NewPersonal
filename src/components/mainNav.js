@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom'; 
+import Auth from '../auth/auth';
 
 class MainNav extends Component {
     render() {
@@ -23,7 +24,7 @@ class MainNav extends Component {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/test">
+                                <Link to="/genres">
                                     <h4 className="navbarText">Genres</h4>
                                 </Link>
                             </li>
@@ -39,8 +40,13 @@ class MainNav extends Component {
                             </li>
                             <li>
                                 <Link to="/test">
-                                    <h4 className="navbarText">Top Tracks</h4>
+                                    <h4 className="navbarText">Login</h4>
                                 </Link>
+                            </li>
+                            <li>
+                                <button className="btn btn-primary" onClick={Auth.login()}>
+                                    <h4 className="navbarText">Login</h4>
+                                </button>
                             </li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">

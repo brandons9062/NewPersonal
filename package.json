@@ -24,20 +24,25 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "auth0-js": "^8.7.0",
+    "axios": "^0.16.1",
     "babel-preset-stage-1": "^6.24.1",
     "body-parser": "^1.17.2",
-    "browserify": "^14.4.0",
+    "cors": "^2.8.3",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "lodash": "^4.17.4",
     "massive": "^2.6.1",
     "node-jsx": "^0.13.3",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.6.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
+    "redux-form": "^6.7.0",
     "redux-promise": "^0.5.3"
   }
 }
