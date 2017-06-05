@@ -10,6 +10,7 @@ class AllGenres extends Component {
     }
     
     renderGenres(){
+        let myGenres = [];
         return _.map(this.props.genres, genre => {
             return (
                 <li className="list-group-item" key={genre.id}>
@@ -20,10 +21,12 @@ class AllGenres extends Component {
     }
     
     render() {
-        const brandon = 'cool';
         return (
             <div>
-                <h3>Find a Genre</h3>
+                <div>
+                    <h3>Find a Genre</h3>
+                    
+                </div>
                 <ul className="list-group">
                     {this.renderGenres()}
                 </ul>

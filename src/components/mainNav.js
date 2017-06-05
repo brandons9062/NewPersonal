@@ -59,12 +59,12 @@ class MainNav extends Component {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/test">
+                                <Link to="/producers">
                                     <h4 className="navbarText">Producers</h4>
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/test">
+                                <Link to="/artists">
                                     <h4 className="navbarText">Artists</h4>
                                 </Link>
                             </li>

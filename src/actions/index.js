@@ -3,6 +3,8 @@ import axios from 'axios';
 export const GET_TRACKS = 'get_tracks';
 export const GET_GENRES = 'get_genres';
 export const GET_USERS = 'get_users';
+export const GET_PRODUCERS = 'get_producers';
+export const GET_ARTISTS = 'get_artists';
 export const AUTH_USER = 'auth_user';
 export const AUTH_LOGOUT = 'auth_logout';
 
@@ -31,6 +33,24 @@ export function getUsers() {
     
     return {
         type: GET_USERS,
+        payload: request
+    }
+}
+
+export function getProducers() {
+    const request = axios.get(`${ROOT_URL}api/producers`);
+    
+    return {
+        type: GET_PRODUCERS,
+        payload: request
+    }
+}
+
+export function getArtists() {
+    const request = axios.get(`${ROOT_URL}api/artists`);
+    
+    return {
+        type: GET_ARTISTS,
         payload: request
     }
 }
