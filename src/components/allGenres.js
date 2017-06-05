@@ -11,7 +11,6 @@ class AllGenres extends Component {
     
     renderGenres(){
         return _.map(this.props.genres, genre => {
-            console.log(this.props.genres);
             return (
                 <li className="list-group-item" key={genre.id}>
                     <Link to={`/genres/${genre.id}`}>{genre.genrename}</Link>
@@ -21,6 +20,7 @@ class AllGenres extends Component {
     }
     
     render() {
+        const brandon = 'cool';
         return (
             <div>
                 <h3>Find a Genre</h3>
