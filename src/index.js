@@ -13,6 +13,8 @@ import AllGenres from './components/allGenres';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
+
+
 class Test extends Component {
     render() {
         return <div className="container">TEST!</div>
