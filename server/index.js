@@ -123,6 +123,18 @@ app.get('/api/users', function(req, res) {
     });
 });
 
+app.get('/api/producers', function(req, res) {
+    db.get_producers(function(err, producers){
+        res.send(producers);
+    })
+})
+
+app.get('/api/artists', function(req, res) {
+    db.get_artists(function(err, artists){
+        res.send(artists);
+    })
+})
+
 app.post('/api/tracks', function(req, res) {
     var track = req.body;
     db.post_track([track.trackLength, track.trackName, track.price, track.img, track.mp3, track.wav, track.genreId, track.creatorId], function(err, result){
