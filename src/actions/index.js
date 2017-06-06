@@ -5,6 +5,7 @@ export const GET_GENRES = 'get_genres';
 export const GET_USERS = 'get_users';
 export const GET_PRODUCERS = 'get_producers';
 export const GET_ARTISTS = 'get_artists';
+export const CREATE_TRACK = 'create_track';
 export const AUTH_USER = 'auth_user';
 export const AUTH_LOGOUT = 'auth_logout';
 
@@ -51,6 +52,21 @@ export function getArtists() {
     
     return {
         type: GET_ARTISTS,
+        payload: request
+    }
+}
+
+
+
+//--------------------POST REQUESTS-------------------
+
+
+
+export function createTrack(values, callback) {
+    const request = axios.post(`${ROOT_URL}api/tracks`, values)
+        .then(() => callback())
+    return {
+        type: CREATE_TRACK,
         payload: request
     }
 }

@@ -37,6 +37,7 @@ app.use(cors(corsOptions));
 app.use(function(req, res, next){
     var allowedOrigins = ['http://localhost:8080'];
     var origin = req.headers.origin;
+    console.log(origin);
     if(allowedOrigins.indexOf(origin) > -1){
         res.setHeader('Access-Control-Allow-Origin', origin);
     }
@@ -104,7 +105,13 @@ app.get('/auth/logout', function(req, res){
     req.logout();
     res.redirect('/');
 })
-//----------------------------------------------------------
+
+
+
+//-------------GET REQUESTS---------------------------------------------
+
+
+
 app.get('/api/genres', function(req, res) {
     db.get_genres(function(err, genres){
         res.send(genres);
@@ -135,8 +142,13 @@ app.get('/api/artists', function(req, res) {
     })
 })
 
+
+
+//----------------POST REQUESTS-----------------------------------------
+
 app.post('/api/tracks', function(req, res) {
     var track = req.body;
+    console.log(track);
     db.post_track([track.trackLength, track.trackName, track.price, track.img, track.mp3, track.wav, track.genreId, track.creatorId], function(err, result){
         if(err){
             res.status(400).send(err);
