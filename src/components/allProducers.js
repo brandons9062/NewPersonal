@@ -13,7 +13,7 @@ class AllProducers extends Component {
         return _.map(this.props.producers, producer => {
             return (
                 <li className="list-group-item" key={producer.id}>
-                    <Link to={`/producers/${producer.id}`}>
+                    <Link to={`/users/${producer.id}`}>
                         <div>
                             {producer.displayname}
                         </div>

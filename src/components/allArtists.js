@@ -14,7 +14,7 @@ class AllArtists extends Component {
         return _.map(this.props.artists, artist => {
             return (
                 <li className="list-group-item" key={artist.id}>
-                    <Link to={`/artists/${artist.id}`}>
+                    <Link to={`/users/${artist.id}`}>
                         <div>
                             {artist.displayname}
                         </div>

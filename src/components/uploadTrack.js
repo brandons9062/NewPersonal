@@ -40,13 +40,13 @@ class UploadTrack extends Component {
 
         if(values.fileType == 'mp3'){
             values.mp3 = values.trackFile;
-            values.wav = '';
+            values.wav = null;
         } else if(values.fileType == 'wav'){
             values.wav = values.trackFile;
-            values.mp3 = '';
+            values.mp3 = null;
         } else {
-            values.mp3 = '';
-            values.wav = '';
+            values.mp3 = null;
+            values.wav = null;
         }
         console.log(values);
         this.props.createTrack(values, () => {
@@ -116,6 +116,9 @@ function validate(values) {
     }
     if(!values.fileType){
         errors.fileType = "Please select which file type you are uploading.";
+    }
+    if(!values.trackFile){
+        errors.trackFile = "Select a track to upload."
     }
     
     return errors;

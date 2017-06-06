@@ -5,6 +5,8 @@ export const GET_GENRES = 'get_genres';
 export const GET_USERS = 'get_users';
 export const GET_PRODUCERS = 'get_producers';
 export const GET_ARTISTS = 'get_artists';
+export const GET_USER = 'get_user';
+export const GET_TRACKSBYGENRE = 'get_tracksbygenre';
 export const CREATE_TRACK = 'create_track';
 export const AUTH_USER = 'auth_user';
 export const AUTH_LOGOUT = 'auth_logout';
@@ -52,6 +54,24 @@ export function getArtists() {
     
     return {
         type: GET_ARTISTS,
+        payload: request
+    }
+}
+
+export function getUser(id) {
+    const request = axios.get(`${ROOT_URL}api/users/${id}`);
+    
+    return {
+        type: GET_USER,
+        payload: request
+    }
+}
+
+export function getTracksByGenre(id) {
+    const request = axios.get(`${ROOT_URL}api/genres/${id}`);
+    
+    return {
+        type: GET_TRACKSBYGENRE,
         payload: request
     }
 }

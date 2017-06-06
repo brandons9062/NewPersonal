@@ -10,11 +10,12 @@ import reducers from './reducers';
 import MainNav from './components/mainNav';
 import Home from './components/homeContainer';
 import AllGenres from './components/allGenres';
-import GenreByID from './components/genreByID';
+import TracksByGenreID from './components/tracksByGenreID';
 import AllTracks from './components/allTracks';
 import AllProducers from './components/allProducers';
 import AllArtists from './components/allArtists';
 import UploadTrack from './components/uploadTrack';
+import UserByID from './components/userByID';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -34,10 +35,11 @@ ReactDOM.render(
                 <Switch>
                     <Route path='/tracks/new' component={UploadTrack} />
                     <Route path='/tracks' component={AllTracks} />
-                    <Route path='/genres/:id' component={GenreByID} />
+                    <Route path='/genres/:id' component={TracksByGenreID} />
                     <Route path='/genres' component={AllGenres} />
                     <Route path='/producers' component={AllProducers} />
                     <Route path='/artists' component={AllArtists} />
+                    <Route path='/users/:id' component={UserByID} />
                     <Route path='/' component={Home} />
                 </Switch>
             </div> 

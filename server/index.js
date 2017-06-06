@@ -30,18 +30,17 @@ var corsOptions = {
     origin: 'http://localhost:3000'
 }
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 
 app.use(function(req, res, next){
     var allowedOrigins = ['http://localhost:8080'];
     var origin = req.headers.origin;
-    console.log(origin);
     if(allowedOrigins.indexOf(origin) > -1){
         res.setHeader('Access-Control-Allow-Origin', origin);
     }
-    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, POST, DELETE, PUT');
+    res.header('Access-Control-Allow-Methods', ['GET','PUT','POST','DELETE']);
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.header('Access-Control-Allow-Credentials', true);
     return next();
@@ -118,6 +117,14 @@ app.get('/api/genres', function(req, res) {
     }); 
 });
 
+app.get('/api/genres/:id', function(req, res) {
+    var genre = req.params;
+    console.log(genre);
+    db.get_tracksByGenreId([genre.id], function(err, tracks){
+        res.send(tracks);
+    })
+})
+
 app.get('/api/tracks', function(req, res) {
     db.get_tracks(function(err, tracks){
         res.send(tracks);
@@ -129,6 +136,13 @@ app.get('/api/users', function(req, res) {
         res.send(users);
     });
 });
+
+app.get('/api/users/:id', function(req, res){
+    var user = req.params;
+    db.get_userById([user.id], function(err, user){
+        res.send(user);
+    })
+})
 
 app.get('/api/producers', function(req, res) {
     db.get_producers(function(err, producers){
