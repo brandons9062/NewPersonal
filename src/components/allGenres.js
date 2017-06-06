@@ -12,23 +12,28 @@ class AllGenres extends Component {
     renderGenres(){
         return _.map(this.props.genres, genre => {
             return (
-                <li className="list-group-item" key={genre.id}>
-                    <Link to={`/genres/${genre.id}`}>{genre.genrename}</Link>
-                </li>
+                <div className="col-sm-3 listItemDiv grow" key={genre.id}>
+                    <li className="list-group-item individualListItem">
+                        <Link to={`/genres/${genre.id}`}>
+                            <h6>{genre.genrename}</h6>
+                        </Link>
+                    </li>
+                </div>
             );
         })
     }
     
     render() {
         return (
-            <div>
-                <div>
-                    <h3>Find a Genre</h3>
-                    
+            <div className="container-fluid">
+                <div className="row pageTitle">
+                    <h3>Choose a Genre</h3>
                 </div>
-                <ul className="list-group">
-                    {this.renderGenres()}
-                </ul>
+                <div className="row pageListUlDiv">
+                    <ul className="list-group">
+                        {this.renderGenres()}
+                    </ul>
+                </div>
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getTracksByGenre} from '../actions';
+import {getTracksByGenre, getGenres} from '../actions';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -9,6 +9,7 @@ class TracksByGenreID extends Component {
         const {id} = this.props.match.params;
         
         this.props.getTracksByGenre(id);
+        this.props.getGenres();
     }
     
     renderGenreTracks(){
@@ -39,7 +40,10 @@ class TracksByGenreID extends Component {
 }
 
 function mapStateToProps(state){
-    return {tracks: state.tracks};
+    return {
+        tracks: state.tracks,
+        genres: state.genres
+           };
 }
 
-export default connect(mapStateToProps, {getTracksByGenre})(TracksByGenreID);
+export default connect(mapStateToProps, {getTracksByGenre, getGenres})(TracksByGenreID);

@@ -1,3 +1,8 @@
+body {
+    color: white;
+    background-color: #333333;
+}
+
 #myNav {
     border-radius: 0px;
     margin-bottom: 0px;
@@ -36,12 +41,13 @@
 }
 
 .grow {
-    transition:all 0.5s ease-out;
+    transition: all 0.5s ease-out;
 }
 
 .grow:hover {
     transform:scale(1.3);
     text-decoration: none;
+    z-index: 10;
 }
 
 #profileIconDiv {
@@ -114,11 +120,31 @@
     background-image: url("../src/imgs/uploadTrackIcon.png")
 }
 
+.listItemDiv {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
 
+.individualListItem {
+    text-align: center;
+    width: 100%;
+    height: 150px;
+}
 
+.pageTitle {
+    margin-bottom: 10px;
+    text-align: center;
+}
 
+.mainBodyBackground {
+    background-color: #333333;
+}
 
-
+.pageListUlDiv {
+    display: flex;
+    justify-content: space-between;
+}
 
 
 
