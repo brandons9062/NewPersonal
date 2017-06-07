@@ -13,27 +13,26 @@ class AllArtists extends Component {
     renderArtists(){
         return _.map(this.props.artists, artist => {
             return (
-                <li className="list-group-item" key={artist.id}>
-                    <Link to={`/users/${artist.id}`}>
-                        <div>
-                            {artist.displayname}
-                        </div>
-                    </Link>
-                </li>
+                <Link to={`/users/${artist.id}`} className="col-sm-3 genreName listItemDiv grow" key={artist.id}>
+                    <div className="list-group-item individualListItem">
+                        <h6 className="genreName">{artist.displayname}</h6>
+                    </div>
+                </Link>
             );
         })
     }
     
     render() {
         return (
-            <div>
-                <div>
-                    <h3>Find a Artist</h3>
-                    
+            <div className="container-fluid">
+                <div className="row pageTitleDiv">
+                    <h3 className="pageTitle">Find an Artist</h3>
                 </div>
-                <ul className="list-group">
-                    {this.renderArtists()}
-                </ul>
+                <div className="row pageListUlDiv">
+                    <ul className="list-group pageUl">
+                        {this.renderArtists()}
+                    </ul>
+                </div>
             </div>
         );
     }

@@ -48,6 +48,8 @@ body {
     transform:scale(1.3);
     text-decoration: none;
     z-index: 10;
+    
+    
 }
 
 #profileIconDiv {
@@ -123,18 +125,39 @@ body {
 .listItemDiv {
     display: flex;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+    width: 300px;
+    height: 150px;
 }
 
 .individualListItem {
     text-align: center;
     width: 100%;
-    height: 150px;
+    height: 100%;
+    padding-top: 18%;
+    background-color: #222222;
+    border: transparent;
+    color: #9d9d9d;
+}
+
+.individualListItem:hover {
+    color: #222222;
+    background-color: #9d9d9d;
+    border: solid;
+    border-color: #222222;
+    border-width: thin;
+}
+
+.pageTitleDiv {
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .pageTitle {
-    margin-bottom: 10px;
-    text-align: center;
+    font-family: 'Lobster', cursive;
+    font-size: 42px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .mainBodyBackground {
@@ -146,6 +169,19 @@ body {
     justify-content: space-between;
 }
 
+.pageUl {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
+.genreName {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    
+}
 
-
+.searchBox {
+    color: black;
+    margin-bottom: 20px;
+}

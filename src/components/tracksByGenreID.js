@@ -1,28 +1,22 @@
 import React, {Component} from 'react';
-import {getTracksByGenre, getGenres} from '../actions';
+import {getTracksByGenre} from '../actions';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 class TracksByGenreID extends Component {
-    
     componentDidMount() {
         const {id} = this.props.match.params;
-        
         this.props.getTracksByGenre(id);
-        this.props.getGenres();
     }
     
     renderGenreTracks(){
         return _.map(this.props.tracks, track => {
             return (
-                <li className="list-group-item" key={track.id}>
-                    <Link to={`/tracks/${track.id}`}>
-                        <div>
-                            {track.trackname}
-                            <img src={track.img} />
-                        </div>
-                    </Link>
-                </li>
+                <Link to={`/tracks/${track.id}`} className="col-sm-3 genreName listItemDiv grow" key={track.id}>
+                    <div className="list-group-item individualListItem">
+                        <h6 className="genreName">{track.trackname}</h6>
+                    </div>
+                </Link>
             );
         })
     }
@@ -30,10 +24,15 @@ class TracksByGenreID extends Component {
     render(){
         
         return (
-            <div>
-                <ul className="list-group">
-                    {this.renderGenreTracks()}
-                </ul>
+            <div className="container-fluid">
+                <div className="row pageTitleDiv">
+                    <h3 className="pageTitle">Find a Track</h3>
+                </div>
+                <div className="row pageListUlDiv">
+                    <ul className="list-group pageUl">
+                        {this.renderGenreTracks()}
+                    </ul>
+                </div>
             </div>
         );
     }
@@ -41,9 +40,8 @@ class TracksByGenreID extends Component {
 
 function mapStateToProps(state){
     return {
-        tracks: state.tracks,
-        genres: state.genres
+        tracks: state.tracks
            };
 }
 
-export default connect(mapStateToProps, {getTracksByGenre, getGenres})(TracksByGenreID);
+export default connect(mapStateToProps, {getTracksByGenre})(TracksByGenreID);

@@ -86,15 +86,31 @@ class UploadTrack extends Component {
                 <Field
                     name="trackFile"
                     label="Choose Track to Upload"
-                    type="text"
+                    type="file"
+                    component={this.renderField}
+                 />
+                <Field
+                    name="trackFileUrl"
+                    label="Track File URL"
+                    type="hidden"
                     component={this.renderField}
                  />
                 <Field
                     name="img"
                     label="Track Art (Optional)"
-                    type="text"
+                    type="file"
                     component={this.renderField}
                  />
+                <img id="trackImgPreview" src="./src/imgs/djIconGray.png" />
+                <Field
+                    id="trackImgUrl"
+                    name="imgFileUrl"
+                    label="Image File URL"
+                    type="hidden"
+                    component={this.renderField}
+                    value="./src/imgs/djIconGray.png"
+                 />
+                
                 <button type='submit' className="btn btn-primary">Upload</button>
                 <Link to='/' className="btn btn-danger">Cancel</Link>
             </form>

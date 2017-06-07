@@ -9,16 +9,34 @@ class AllGenres extends Component {
         this.props.getGenres();
     }
     
+    constructor(props){
+        super(props);
+        
+        this.state = {
+            searchTerm: '',
+            currentlyDisplayed: this.props.genres
+        };
+        
+        this.onInputChange = this.onInputChange.bind(this);
+    }
+    
+    onInputChange(event) {
+        let newlyDisplayed = _.filter(this.props.genres, genre => genre.genrename.toLowerCase().includes(event.target.value.toLowerCase()));
+        
+        this.setState({
+            searchTerm: event.target.value,
+            currentlyDisplayed: newlyDisplayed
+        });
+    }
+    
     renderGenres(){
-        return _.map(this.props.genres, genre => {
+        return _.map(this.state.currentlyDisplayed, genre => {
             return (
-                <div className="col-sm-3 listItemDiv grow" key={genre.id}>
-                    <li className="list-group-item individualListItem">
-                        <Link to={`/genres/${genre.id}`}>
-                            <h6>{genre.genrename}</h6>
-                        </Link>
-                    </li>
-                </div>
+                <Link to={`/genres/${genre.id}`} className="col-sm-3 genreName listItemDiv grow" key={genre.id}>
+                    <div className="list-group-item individualListItem">
+                        <h6 className="genreName">{genre.genrename}</h6>
+                    </div>
+                </Link> 
             );
         })
     }
@@ -26,11 +44,12 @@ class AllGenres extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="row pageTitle">
-                    <h3>Choose a Genre</h3>
+                <div className="row pageTitleDiv">
+                    <h3 className="pageTitle">Choose a Genre</h3>
+                    <input value={this.state.searchTerm} onChange={this.onInputChange} className="searchBox" />
                 </div>
                 <div className="row pageListUlDiv">
-                    <ul className="list-group">
+                    <ul className="list-group pageUl">
                         {this.renderGenres()}
                     </ul>
                 </div>

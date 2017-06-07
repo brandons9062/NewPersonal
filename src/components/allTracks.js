@@ -12,28 +12,26 @@ class AllTracks extends Component {
     renderTracks(){
         return _.map(this.props.tracks, track => {
             return (
-                <li className="list-group-item" key={track.id}>
-                    <Link to={`/tracks/${track.id}`}>
-                        <div>
-                            {track.trackname}
-                            <img src={track.img} />
-                        </div>
-                    </Link>
-                </li>
+                <Link to={`/tracks/${track.id}`} className="col-sm-3 genreName listItemDiv grow" key={track.id}>
+                    <div className="list-group-item individualListItem">
+                        <h6 className="genreName">{track.trackname}</h6>
+                    </div>
+                </Link>
             );
         })
     }
     
     render() {
         return (
-            <div>
-                <div>
-                    <h3>Find a Track</h3>
-                    
+            <div className="container-fluid">
+                <div className="row pageTitleDiv">
+                    <h3 className="pageTitle">Find a Track</h3>
                 </div>
-                <ul className="list-group">
-                    {this.renderTracks()}
-                </ul>
+                <div className="row pageListUlDiv">
+                    <ul className="list-group pageUl">
+                        {this.renderTracks()}
+                    </ul>
+                </div>
             </div>
         );
     }

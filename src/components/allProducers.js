@@ -12,27 +12,26 @@ class AllProducers extends Component {
     renderProducers(){
         return _.map(this.props.producers, producer => {
             return (
-                <li className="list-group-item" key={producer.id}>
-                    <Link to={`/users/${producer.id}`}>
-                        <div>
-                            {producer.displayname}
-                        </div>
-                    </Link>
-                </li>
+                <Link to={`/users/${producer.id}`} className="col-sm-3 genreName listItemDiv grow" key={producer.id}>
+                    <div className="list-group-item individualListItem">
+                        <h6 className="genreName">{producer.displayname}</h6>
+                    </div>
+                </Link>
             );
         })
     }
     
     render() {
         return (
-            <div>
-                <div>
-                    <h3>Find a Producer</h3>
-                    
+            <div className="container-fluid">
+                <div className="row pageTitleDiv">
+                    <h3 className="pageTitle">Find a Producer</h3>
                 </div>
-                <ul className="list-group">
-                    {this.renderProducers()}
-                </ul>
+                <div className="row pageListUlDiv">
+                    <ul className="list-group pageUl">
+                        {this.renderProducers()}
+                    </ul>
+                </div>
             </div>
         );
     }

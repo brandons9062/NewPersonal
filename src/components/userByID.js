@@ -23,11 +23,9 @@ class UserByID extends Component {
         
         return (
             <div>
-                
                 <h3>{user.displayname}</h3>
                 <h6>{user.description}</h6>
                 <p>{user.website}</p>
-                
             </div>
         );
     }

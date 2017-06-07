@@ -6,8 +6,23 @@ const cors = require('cors');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const config = require('./config');
+const aws = require('aws-sdk');
+const fs = require('fs');
 
+const S3FS = require('s3fs');
+const s3fsImp = new S3FS('personalprojectmedia', {
+    accessKeyId: 'AKIAIE5IEUJTD74YKGRQ',
+    secretAccessKey: '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'
+});
 
+s3fsImp.create();
+console.log(s3fsImp);
+
+const multiparty = require('connect-multiparty');
+const multipartyMiddleware = multiparty();
+
+//AWS_ACCESS_KEY_ID = AKIAIE5IEUJTD74YKGRQ
+//AWS_SECRET_ACCESS_KEY = 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
 
 const port = 3000;
 
@@ -24,6 +39,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(express.static('../src'));
+//app.engine('html', require('ejs').renderFile);
+//
+//const S3_BUCKET = process.env.S3_BUCKET;
 
 
 var corsOptions = {
@@ -45,13 +63,54 @@ app.use(function(req, res, next){
     res.header('Access-Control-Allow-Credentials', true);
     return next();
 })
-
+ app.use(multipartyMiddleware);
 
 
 const db = massive.connectSync({
     connectionString: "postgres://owstpiecpxpgmx:2bd7ab3adbea2e6c9e7778789c6947fe3c6b8d19304af22ca214eeb9086cf015@ec2-23-23-234-118.compute-1.amazonaws.com:5432/dc8ucdr21vr6ft?ssl=true"
 }); 
 app.set('db', db);
+
+
+
+//------------S3 REQUESTS------------------------------------------------
+
+
+
+app.post('/aws/imgUpload', function(req, res){
+    var file = req.files.null;
+//    console.log('--------------------', file.path);
+    var stream = fs.createReadStream(file.path);
+    s3fsImp.bucket = 'personalprojectmedia/images';
+    return s3fsImp.writeFile(file.originalFilename, stream).then(function(){
+        fs.unlink(file.path, function(err){
+            if(err){
+                console.log(err);
+            }
+        })
+        res.send('POSTED MEDIA!');
+    });
+})
+
+app.post('/aws/audioUpload', function(req, res){
+    var file = req.files.null;
+    console.log('--------------------', file);
+    var stream = fs.createReadStream(file.path);
+    s3fsImp.bucket = 'personalprojectmedia/audio';
+    return s3fsImp.writeFile(file.originalFilename, stream).then(function(){
+        fs.unlink(file.path, function(err){
+            if(err){
+                console.log(err);
+            }
+        })
+        res.send('POSTED MEDIA!');
+    });
+})
+
+
+//------------AUTH0 REQUESTS---------------------------------------------
+
+
 
 passport.use(new Auth0Strategy({
     domain: config.auth0.domain,
@@ -91,7 +150,7 @@ passport.deserializeUser(function(userB, done){
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback',
-       passport.authenticate('auth0', {successRedirect: 'http://localhost:8080/genres'}), function(req, res){
+       passport.authenticate('auth0', {successRedirect: 'http://localhost:8080/'}), function(req, res){
     res.status(200).send(req.user);
 })
 app.get('/auth/me', function(req, res){
