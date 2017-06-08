@@ -11,8 +11,8 @@ const fs = require('fs');
 
 const S3FS = require('s3fs');
 const s3fsImp = new S3FS('personalprojectmedia', {
-    accessKeyId: 'AKIAJ7KWMQDRW2H7W6HA',
-    secretAccessKey: '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'
+    accessKeyId: ,
+    secretAccessKey: 
 });
 
 s3fsImp.create();
@@ -20,9 +20,6 @@ console.log(s3fsImp);
 
 const multiparty = require('connect-multiparty');
 const multipartyMiddleware = multiparty();
-
-//AWS_ACCESS_KEY_ID = AKIAIE5IEUJTD74YKGRQ
-//AWS_SECRET_ACCESS_KEY = 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
 
 const port = 3000;
 
