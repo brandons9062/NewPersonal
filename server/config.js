@@ -8,3 +8,5 @@ config.auth0 = {
     clientSecret: 'OZk1I3IQNslKej0CUdxj3U-dcVi9fmMtAJD37rXnmcas8-oLJdO3AHMYu1bLZ-gl',
     callbackURL: '/auth/callback'
 }
+
+config.test = 'seeme?';
