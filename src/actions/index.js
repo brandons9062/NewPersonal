@@ -7,6 +7,7 @@ export const GET_PRODUCERS = 'get_producers';
 export const GET_ARTISTS = 'get_artists';
 export const GET_USER = 'get_user';
 export const GET_TRACKSBYGENRE = 'get_tracksbygenre';
+export const GET_TRACKBYTRACKID = 'get_trackbytrackid';
 export const CREATE_TRACK = 'create_track';
 export const AUTH_USER = 'auth_user';
 export const AUTH_LOGOUT = 'auth_logout';
@@ -72,6 +73,15 @@ export function getTracksByGenre(id) {
     
     return {
         type: GET_TRACKSBYGENRE,
+        payload: request
+    }
+}
+
+export function getTrackByID(id) {
+    const request = axios.get(`${ROOT_URL}api/tracks/${id}`);
+    
+    return {
+        type: GET_TRACKBYTRACKID,
         payload: request
     }
 }

@@ -46,7 +46,7 @@ class AllGenres extends Component {
             <div className="container-fluid">
                 <div className="row pageTitleDiv">
                     <h3 className="pageTitle">Choose a Genre</h3>
-                    <input value={this.state.searchTerm} onChange={this.onInputChange} className="searchBox" />
+                    <input type="text" value={this.state.searchTerm} onChange={this.onInputChange} className="searchBox" />
                 </div>
                 <div className="row pageListUlDiv">
                     <ul className="list-group pageUl">

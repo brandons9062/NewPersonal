@@ -29,29 +29,32 @@ class UploadTrack extends Component {
     }
     
     onSubmit(values){
-        values.tracklength = 0;
-        values.genreId = 1;
-        values.creatorId = 1;
-        _.map(this.props.genres, genre => {
-            if(values.genreName == genre.genrename){
-                values.genreId = genre.id;
-            }
-        })
-
-        if(values.fileType == 'mp3'){
-            values.mp3 = values.trackFile;
-            values.wav = null;
-        } else if(values.fileType == 'wav'){
-            values.wav = values.trackFile;
-            values.mp3 = null;
-        } else {
-            values.mp3 = null;
-            values.wav = null;
-        }
+        let duration;
+            
+        
+//        values.tracklength = 0;
+//        values.genreId = 1;
+//        values.creatorId = 1;
+//        _.map(this.props.genres, genre => {
+//            if(values.genreName == genre.genrename){
+//                values.genreId = genre.id;
+//            }
+//        })
+//
+//        if(values.trackFile['0'].type == 'audio/mp3'){
+//            values.mp3 = values.trackFile['0'].name;
+//            values.wav = null;
+//        } else if(values.trackFile['0'].type == 'audio/wav'){
+//            values.wav = values.trackFile['0'].name;
+//            values.mp3 = null;
+//        } else {
+//            values.mp3 = null;
+//            values.wav = null;
+//        }
         console.log(values);
-        this.props.createTrack(values, () => {
-            this.props.history.push('/');
-        })
+//        this.props.createTrack(values, () => {
+//            this.props.history.push('/');
+//        })
     }
     
     
@@ -84,6 +87,7 @@ class UploadTrack extends Component {
                     component={this.renderField}
                  />
                 <Field
+                    id="trackfile"
                     name="trackFile"
                     label="Choose Track to Upload"
                     type="file"
@@ -101,7 +105,6 @@ class UploadTrack extends Component {
                     type="file"
                     component={this.renderField}
                  />
-                <img id="trackImgPreview" src="./src/imgs/djIconGray.png" />
                 <Field
                     id="trackImgUrl"
                     name="imgFileUrl"

@@ -11,8 +11,8 @@ const fs = require('fs');
 
 const S3FS = require('s3fs');
 const s3fsImp = new S3FS('personalprojectmedia', {
-    accessKeyId: 'AKIAIE5IEUJTD74YKGRQ',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIAJ7KWMQDRW2H7W6HA',
+    secretAccessKey: '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'
 });
 
 s3fsImp.create();
@@ -107,6 +107,39 @@ app.post('/aws/audioUpload', function(req, res){
     });
 })
 
+var viewAudio = function(folderName, fileName){
+        var audioFolderKey = encodeURIComponent(folderName) + '//';
+        s3fsImp.listObjects({Prefix: audioFolderKey}, function(err, data) {
+            if(err) {
+                return alert('There was an error viewing your album: ' + err.message);
+            }
+            var href = this.request.httpRequest.endpoint.href;
+            var bucketUrl = href + folderName + '/';
+            
+            var files = data.Contents.map(function(file) {
+                var fileObj = {
+                    fileKey: file.Key,
+                    fileUrl: bucketUrl + encodeURIComponent(file.Key)
+                }
+                
+                if(file.Key == fileName){
+                    return fileObj;
+                }
+            })
+            return 'File not found';
+        })
+    }
+
+app.get('/aws/audio/:name', function(req, res){
+    var folderName = 'audio';
+    var fileName = req.params.name;
+    
+    res.send(viewAudio(folderName, fileName));
+    
+    
+})
+
+//audio/SampleAudio_0.7mb.mp3
 
 //------------AUTH0 REQUESTS---------------------------------------------
 
@@ -189,6 +222,13 @@ app.get('/api/tracks', function(req, res) {
         res.send(tracks);
     });
 });
+
+app.get('/api/tracks/:id', function(req, res) {
+    var myTrack = req.params;
+    db.get_trackByTrackId([myTrack.id], function(err, track){
+        res.send(track)
+    })
+})
 
 app.get('/api/users', function(req, res) {
     db.get_users(function(err, users){
